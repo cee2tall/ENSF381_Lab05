@@ -4,7 +4,7 @@
     <title>Lab5 - Exercise 1</title>
   </head>
   <body>
-    <input type="text" id="textInput" placeholder="Type something here..." />
+    <input type="text" id="textInput" placeholder="Enter a user number (1-30)"/>
     <label id="textLabel"></label>
     <button id="redButton">Red</button>
     <button id="blueButton">Blue</button>
@@ -38,11 +38,11 @@
     textInput.addEventListener("keypress", async (event) => {
       // If the user presses the "Enter" key on the keyboard
       if (event.key === "Enter") {
-        data = await retrieveData()
+        data = await retrieveData(); // get the data from the API
         data.forEach(element => {
-          if(textInput.value == element.id) {
-            console.log(element.first_name);
-            textInput.value = ""
+          if(textInput.value == element.id) { // if the ID matches the requested ID
+            textLabel.textContent = `ID: ${element.id}, Name: ${element.first_name}, Group: ${element.user_group}`;
+            textInput.value = ""; // clear the text box
           }
         });
       }
