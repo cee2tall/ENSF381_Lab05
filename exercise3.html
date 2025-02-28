@@ -4,7 +4,7 @@
     <title>Lab5 - Exercise 1</title>
   </head>
   <body>
-    <input type="text" id="textInput" placeholder="Type something here..." />
+    <input type="text" id="textInput" placeholder="Enter a user number (1-30)"/>
     <label id="textLabel"></label>
     <button id="redButton">Red</button>
     <button id="blueButton">Blue</button>
@@ -21,11 +21,30 @@
     orangeButton = document.getElementById("orangeButton");
     purpleButton = document.getElementById("purpleButton");
     
-    textInput.addEventListener("keypress", (event) => {
+    async function retrieveData() {
+      try {
+        //make an asynchronous request to the specified URL
+        const response = await fetch('https://67c1fb8c61d8935867e4f6d2.mockapi.io/users_api');
+        //Parse the response body as JSON; wait for this asynchronous operation to complete
+        const data = await response.json();
+        // Process the fetched data
+        return data;
+      } catch (error) {
+        // Handle errors
+        console.error('Error fetching data:', error);
+      }
+    }
+
+    textInput.addEventListener("keypress", async (event) => {
       // If the user presses the "Enter" key on the keyboard
       if (event.key === "Enter") {
-        textLabel.textContent = textInput.value
-        textInput.value = ""
+        data = await retrieveData(); // get the data from the API
+        data.forEach(element => {
+          if(textInput.value == element.id) { // if the ID matches the requested ID
+            textLabel.textContent = `ID: ${element.id}, Name: ${element.first_name}, Group: ${element.user_group}`;
+            textInput.value = ""; // clear the text box
+          }
+        });
       }
     });
 
