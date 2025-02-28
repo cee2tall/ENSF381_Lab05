@@ -16,9 +16,25 @@
     textInput = document.getElementById("textInput");
     textLabel = document.getElementById("textLabel");
     redButton = document.getElementById("redButton");
+    blueButton = document.getElementById("blueButton");
+    greenButton = document.getElementById("greenButton");
+    orangeButton = document.getElementById("orangeButton");
+    purpleButton = document.getElementById("purpleButton");
 
     redButton.addEventListener("click", () => {
       textLabel.style.color = "red";
+    });
+    blueButton.addEventListener("click", () => {
+      textLabel.style.color = "blue";
+    });
+    greenButton.addEventListener("click", () => {
+      textLabel.style.color = "green";
+    });
+    orangeButton.addEventListener("click", () => {
+      textLabel.style.color = "orange";
+    });
+    purpleButton.addEventListener("click", () => {
+      textLabel.style.color = "purple";
     });
   </script>
 </html>
