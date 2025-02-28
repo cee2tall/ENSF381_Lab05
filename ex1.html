@@ -16,6 +16,14 @@
     textInput = document.getElementById("textInput");
     textLabel = document.getElementById("textLabel");
     redButton = document.getElementById("redButton");
+    
+    textInput.addEventListener("keypress", (event) => {
+      // If the user presses the "Enter" key on the keyboard
+      if (event.key === "Enter") {
+        textLabel.textContent = textInput.value
+        textInput.value = ""
+      }
+    });
 
     redButton.addEventListener("click", () => {
       textLabel.style.color = "red";
